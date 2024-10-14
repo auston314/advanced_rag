@@ -8,6 +8,25 @@ import time
 
 from typing import List
 from collections import defaultdict, Counter
+from openai import OpenAI
+
+client = OpenAI()
+
+def load_embedding_model(model_path='../bge-m3.model'):
+    with open(model_path, 'rb') as f:
+        return pickle.load(f)
+
+embedding_model = load_embedding_model()
+
+def get_embedding_openai(sentences, embedding_model="text-embedding-3-small"):
+   data = client.embeddings.create(input = sentences, model=embedding_model).data
+   vecs = np.array([data[i].embedding for i in range(len(data))])
+   return vecs
+
+def get_embedding_bgem3(sentences, embedding_model=embedding_model): 
+   return embedding_model.encode(sentences)['dense_vecs']
+
+
 
 class Content:
     def __init__(self, content_text, content_type, parent=None):
@@ -111,10 +130,6 @@ class Node:
     def set_node_id(self, node_id):
         self.node_id = node_id
 
-def load_embedding_model(model_path='../bge-m3.model'):
-    with open(model_path, 'rb') as f:
-        return pickle.load(f)
-
 def normalize_l2(x):
     x = np.array(x)
     norm = np.linalg.norm(x, axis=-1, keepdims=True)
@@ -199,20 +214,20 @@ def add_content_to_node(node, content_block):
     # Generate summary for the node content
     node.summary = generate_content_summary(content_block)
 
-def create_embeddings_for_tree(root_node, embedding_model):
+def create_embeddings_for_tree(root_node, embedding_function):
     def traverse_and_embed(node):
         # Create embeddings for header, content, and summary
-        node.header_embedding = embedding_model.encode([node.header])['dense_vecs']
+        node.header_embedding = embedding_function([node.header])
         if node.summary:
-            node.summary_embedding = embedding_model.encode([node.summary])['dense_vecs']
+            node.summary_embedding = embedding_function([node.summary])
         if node.chunk_list:
             sentences = [sentence for chunk in node.chunk_list for sentence in chunk.sentences]
             if sentences:
-                node.content_embeddings = embedding_model.encode(sentences)['dense_vecs']
+                node.content_embeddings = embedding_function(sentences)
             # Create embeddings for topics
             topics = [topic for chunk in node.chunk_list for topic in chunk.topics]
             if topics:
-                node.topic_embeddings = embedding_model.encode(topics)['dense_vecs']
+                node.topic_embeddings = embedding_function(topics)
         # Recursively create embeddings for child nodes
         for child in node.children:
             traverse_and_embed(child)
@@ -238,11 +253,11 @@ def generate_topics_for_content(content_text, model_name='llama3.2-3B-16k', api_
         topics = []
     return topics
 
-def retrieve_relevant_nodes(query, root_node, embedding_model, bm25_model, top_n=10, threshold=0.0):
+def retrieve_relevant_nodes(query, root_node, embedding_function, bm25_model, top_n=10, threshold=0.0):
     time1 = time.time()
-    query_embedding = embedding_model.encode([query])['dense_vecs']
+    query_embedding = embedding_function([query])
     time2 = time.time()
-    print("Embedding time = ", time2-time1)
+    print("Embedding time = ", time2 - time1)
     relevant_nodes = []
 
     def evaluate_node(node):
@@ -451,3 +466,21 @@ class QnAAgent:
         answer = gen_answer(collected_content, query, model_name=model_name)
         return answer
 
+class QnAAgent:
+    def __init__(self, markdown_text, embedding_function=get_embedding_bgem3, embedding_model_path='../bge-m3.model'):
+        self.tree = parse_markdown_to_tree(markdown_text)
+        self.embedding_function = embedding_function
+        self.embedding_model = load_embedding_model(embedding_model_path)
+        self.bm25_model = BM25([f"{node.header} {node.content}".split() for node in tree_node_iterator(self.tree)])
+        create_embeddings_for_tree(self.tree, self.embedding_function)
+
+    def answer_question(self, query, top_n=5, model_name='llama3.2-3B-16k', show_content=False):
+        time1 = time.time()
+        relevant_nodes = retrieve_relevant_nodes(query, self.tree, self.embedding_function, self.bm25_model, top_n=top_n)
+        collected_content = collect_content_from_doctree(self.tree, relevant_nodes)
+        time2 = time.time()
+        print("Retrieval time = ", time2 - time1)
+        if show_content:
+            print("collected_content: ", collected_content)
+        answer = gen_answer(collected_content, query, model_name=model_name)
+        return answer
