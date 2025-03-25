@@ -27,11 +27,11 @@ Joshua M. Popp 1† , Katherine Rhodes 2† , Radhika Jangi 3 , Mingyuan Li 3 , 
 - *Corresponding authors. Email: ajbattle@jhu.edu and gilad@uchicago.edu
 - † These authors contributed equally to this work
 
-## Abstract
+### Abstract
 
 Identifying the molecular effects of human genetic variation across cellular contexts is crucial for understanding the mechanisms underlying disease-associated loci, yet many cell-types and developmental stages remain underexplored. Here we harnessed the potential of heterogeneous differentiating cultures ( HDCs ), an in vitro system in which pluripotent cells asynchronously differentiate into a broad spectrum of cell-types. We generated HDCs for 53 human donors and collected single-cell RNA-sequencing data from over 900,000 cells. We identified expression quantitative trait loci in 29 cell-types and characterized regulatory dynamics across diverse differentiation trajectories. This revealed novel regulatory variants for genes involved in key developmental and disease-related processes while replicating known effects from primary tissues, and dynamic regulatory effects associated with a range of complex traits.
 
-## Introduction
+### Introduction
 
 Decoding the molecular consequences of genetic variation is a central goal in human genetics. With the advent of genome-wide association studies, a vast array of genetic variants associated with diseases have been uncovered. These predominantly lie in non-coding regions of the genome, suggesting primarily regulatory mechanisms 1 . This insight has spurred a surge in mapping expression quantitative trait loci (eQTLs) to understand how the disease-associated genetic variants influence gene expression levels. Despite significant strides made by several large-scale projects such as the GTEx Consortium to map eQTLs 2-7 , a comprehensive understanding of the molecular impacts of disease-associated loci remains elusive, in part due to the context-dependent and dynamic nature of gene regulation 8-11 .
 
@@ -57,9 +57,9 @@ In this study, we explored gene regulation across diverse cellular contexts usin
 
 Here, we generated unguided HDCs from a panel of 53 human iPS cell lines and measured gene expression at single-cell resolution in over 900,000 cells. We mapped eQTLs in 29 cell-types, including many that have never before been characterized at the population level in humans, and identified dynamic genetic effects on gene regulation that vary with respect to diverse differentiation trajectories and gene programs.
 
-## Results
+### Results
 
-## Heterogeneous differentiating cultures generate diverse cell-types
+#### Heterogeneous differentiating cultures generate diverse cell-types
 
 We established unguided HDCs from the iPSCs of 53 unrelated Yoruba individuals from Ibadan, Nigeria (YRI) (Fig. 1A; Methods). Briefly, we formed HDCs in batches of 4-8 individuals and maintained them in culture for 21 days (Supplementary Table S1). Within each batch, we formed, maintained, and dissociated HDCs in parallel. After dissociation, we multiplexed samples from each individual in equal proportions in preparation for single-cell RNA sequencing, targeting a depth of 100,000 reads per cell. After quality control, filtering, and de-
 
@@ -85,7 +85,7 @@ multiplexing, we retained data from 909,536 high-quality cells (median 1,241 cel
 
 To initially assess cellular diversity in HDCs, we developed a cell-type classifier based on data and annotations from the fetal cell atlas 26 . We used a curated set of 33 high confidence cell-type labels (Methods, Fig. S1) that span the three main germ layers (Fig. 1B). We assigned 651,129 cells (72% of all cells) to one of these cell-types based on gene expression signatures (Supplementary Table S2). Using this approach, 28% of the cells remained unclassified. Of the 33 cell-types, 29 are represented with a minimum of 5 cells in at least 25 individuals. While the proportion of cells of each type varied between individuals (Fig. 1C), 52 of 53 individuals have data from least 5 cells from most cell-types (median 29 of 33 cell-types per donor, Fig. 1D). Some of the unannotated cells express markers of pluripotency, suggesting that asynchronous differentiation within HDCs enabled us to collect pluripotent cells alongside partially and fully differentiated cell-types. Indeed, manually adding a marker gene set for iPSCs 27 to the list of cell-type signatures enabled us to classify 21,370 previously unannotated cells as iPSCs (Fig. 1B). Since this iPSC signature was obtained from a separate reference, and since eQTLs in iPSCs have previously been thoroughly characterized 28,29 , we focused on the 29 common fetal cell atlas cell-types in the subsequent cell-type-stratified eQTL analysis, filtering to the 52 donors that successfully differentiated into diverse cell-types (Supplementary Table S3). We reincorporate these pluripotent and unannotated cells in later analyses that focused on evaluating regulatory dynamics across the HDC system.
 
-## eQTLs across cell-types
+#### eQTLs across cell-types
 
 We mapped genetic effects on gene regulation in each of the 29 discretely defined fetal cell atlas cell-types. To mitigate the effects of noise inherent to single-cell data, we aggregated single-cell expression into pseudobulk such that each observation represents all individual cells from a single donor/cell-type combination 30,31 (Methods). This aggregation step also allowed us to take advantage of well-established methods for eQTL mapping using bulk RNA-sequencing data.
 
@@ -115,7 +115,7 @@ The four strongest regulatory patterns revealed when we used this approach depic
 
 Using mash, we detected an additional 56,614 eQTLs corresponding to 4,973 eGenes (Supplementary Table S6). The example of SH3PXD2B (Fig. 2D) , a gene thought to be important for cardiac and skeletal development 35 , highlights the utility of considering structured regulatory patterns in the analysis of heterogeneous single-cell data. Indeed, no significant eQTLs for SH3PXDB2 were found in GTEx, nor the univariate analysis considering one HDC cell-type at a time (Fig. S4). Specifically, when we leveraged regulatory patterns shared by celltypes of similar developmental origin, we found a significant cis eQTL for SH3PXDB2 (local false sign rate; lfsr <= 0.05) in nearly all endoderm- and mesoderm-derived cell-types.
 
-## Dynamic genetic regulation along diverse differentiation trajectories
+#### Dynamic genetic regulation along diverse differentiation trajectories
 
 Next, we took a different approach to characterize how interactions between genetic variants and the cellular environment impact gene expression levels. To do so, we abandon discretely defined cell-type labels in favor of more continuous and nuanced representations of cellular variation.
 
@@ -143,7 +143,7 @@ After validating our approach in the cardiomyocyte trajectory, which is derived 
 
 We further categorized the dynamic eQTLs we identified in these three developmental trajectories into early (40%), late (57%), and switch (3%) effects, excluding three genes where eQTL classification diverged between trajectories (see Methods). For example, RILPL1 , which is thought to regulate cell shape and polarity 39 , is associated with an early dynamic eQTL in all three trajectories (Fig. 3C), while ACAA2 , which encodes a protein involved in fatty acid metabolism in the liver, is associated with a late eQTL only in hepatocytes (Fig. 3D). While 77% of late and switch dynamic eQTLs overlap previously discovered effects listed in the GTEx catalog, similar to the proportion of overlapping cell-type eQTLs, the overlap with GTEx drops to 60% for early dynamic eQTLs. That is, eQTLs identified only in the early developing celltypes of each trajectory are markedly less likely to be observed in GTEx adult tissue eQTLs.
 
-## Resolving complex regulatory interactions using topic analysis
+#### Resolving complex regulatory interactions using topic analysis
 
 Cell-type and differentiation stage represent the most salient aspects of cellular identity in our dataset. Regulatory changes along differentiation and between cell-types lead to strong gene expression differences, such that straightforward application of unsupervised machine learning methods (such as clustering and principal components analysis) to gene expression will first stratify cells based on these features. However, as they differentiate, cells are simultaneously engaging in a wide array of dynamic processes, including growth, division, and signaling. Many of these processes have the potential to alter gene regulation across different trajectories, and perhaps also orthogonally to the effects of cell-type or differentiation stage.
 
@@ -173,7 +173,7 @@ We next sought to identify genetic variants with regulatory effects that are spe
 
 Since this powerful testing scheme is computationally expensive, we limited the topic interaction testing to the 77,550 eQTLs identified in the mash analysis. We identified a total of 157 genes with a topic eQTL (Supplementary Table S12). For example, DNA2 has a topic eQTL whose effect is correlated with the apparent cell-cycle topic (topic 8; Fig. 4C-E). DNA2 encodes a helicase protein involved in maintaining mitochondrial and nuclear DNA stability during DNA replication and repair. Visualizing this eQTL with the more clearly defined cell cycle phase inferred by tricycle 41 shows that this regulatory effect is largest during S phase, when DNA replication occurs. Another compelling example is the topic eQTL associated with AXDND1 , with an effect that is correlated with the ciliary topic (topic 10; Fig. S6). AXDND1 is thought to encode a component of axonemal dyneins, which drive ciliary beating to enable cell motility and extracellular fluid flow 39,44 . This analysis provides granular functional insight that is obscured by the standard catalog-based eQTL mapping approach.
 
-## HDC eQTLs help reveal the functional context of GWAS loci
+#### HDC eQTLs help reveal the functional context of GWAS loci
 
 Our eQTL mapping approach leverages the extensive cellular heterogeneity present in HDCs to identify gene regulatory variants whose effects are most prominent in underexplored contexts, ranging from early developmental time points to gene programs that are active across multiple cell states. Context-specific genetic effects could potentially shed light on disease-associated loci that have thus far failed to display regulatory potential in steady-state adult tissue datasets. As a preliminary appraisal of our granular, multi-dimensional framework for characterizing gene regulation in HDCs, we investigated the intersection between the context-dependent effects we identified and disease-associated loci.
 
@@ -203,7 +203,7 @@ associated with intermediate stages of neuronal development (topic 7), rather th
 
 With this in mind, we next focused on novel interaction eQTLs (i.e., temporally dynamic eQTLs and topic eQTLs that are not found in GTEx, and did not tag a GTEx eQTL in any tissue at R 2 >= 0.5). We used the Open Targets Genetics database to search for intersection between these novel regulatory effects and GWAS loci 52 . We found 62 genes with novel interaction eQTLs (ieGenes) displaying genome-wide significant association (P <= 5e-8) with at least one diseaseassociated locus: 26 neuronal dynamic ieGenes, 8 hepatocyte dynamic ieGenes, 10 cardiomyocyte dynamic ieGenes, and 24 topic ieGenes (Supplementary Table S13). We highlight an example of a previously unknown dynamic eQTL for the collagen gene COL1A2 , where the effect switches direction over the course of cardiomyocyte differentiation, suggesting a regulatory element with contrasting effects over time, or the convergence of multiple dynamic effects in LD with the variant shown (Fig. 5F-H). This eQTL tags a variant that is associated with appendicular lean mass, a measure of the musculature in arms and legs.
 
-## Discussion
+### Discussion
 
 The exploration of unguided heterogeneous differentiating cultures (HDCs) in this study reveals an array of context-specific eQTLs that remained undetected in datasets such as GTEx, despite its comprehensive analysis of dozens of postmortem tissue types from hundreds of adult individuals. Our observations underscore the nuanced complexity of genetic regulation, which operates within highly specific cell-types, states, and temporal contexts. By exploring cell-types, trajectories, and programs that are difficult to sample in vivo and have never been studied from a population-level sample in humans, our work provides further support for the critical importance of context in understanding the regulatory mechanisms influencing disease.
 
@@ -233,7 +233,7 @@ To bridge the gaps in our understanding of the genetics of gene regulation, it i
 
 Acknowledgments: We would like to thank Natalia Gonzales for comments on the manuscript, and Peter Carbonetto, Benjamin Strober, and Rebecca Keener for discussions. This work was supported by resources provided by the University of Chicago's Research Computing Center and the Advanced Research Computing at Johns Hopkins University (ARCH) core facility.
 
-## Funding:
+### Funding:
 
 National Institutes of Health grant R21HG011170 (YG)
 
@@ -245,7 +245,7 @@ National Institutes of Health grant F31HG012896 (JMP)
 
 National Institutes of Health grant T32GM139782 (KT)
 
-## Author contributions:
+### Author contributions:
 
 Conceptualization: AB, YG
 
@@ -271,7 +271,7 @@ Competing interests: KR, AB, and YG are co-founders and equity holders of CellCi
 
 Data and code availability: Raw sequencing data is available in the SRA under BioProject PRJNA1090081. Processed expression data has been submitted to GEO. Genotype data for the Yoruba of Ibadan, Nigeria population is available through the International Genome Sample Resource at https://www.internationalgenome.org/data-portal/population/YRI. Code needed to reproduce the analyses described in this paper is available in a snakemake workflow at https://github.com/jmp448/hdcQTL.
 
-## Supplementary Materials
+### Supplementary Materials
 
 Document S1. Figs. S1 to S6
 
@@ -341,13 +341,13 @@ Fig. 5: Exploring regulatory impacts of GWAS loci with HDCs. (A) HDC eQTLs (red)
 
 45
 
-## Methods
+### Methods
 
-## iPSC Maintenance
+#### iPSC Maintenance
 
 We maintained feeder-free iPSC cultures on Matrigel Growth Factor Reduced Matrix (CB40230, Thermo Fisher Scientific) with StemFlex Medium (A3349401, Thermo Fisher Scientific) and Penicillin/Streptomycin (30,002 Cl, Corning). We grew cells in an incubator at 37 °C, 5% CO2, and atmospheric O2. Every 3-5 days thereafter, we passaged cells to a new dish using a dissociation reagent (0.5 mM EDTA, 300 mM NaCl in PBS) and seeded cells with ROCK inhibitor Y-27632 (ab120129, Abcam).
 
-## Unguided HDC Differentiation
+#### Unguided HDC Differentiation
 
 HDCs were formed using a modified version of the STEMCELL Agrewell400 protocol which was previously described in Rhodes et al. 2022. We coated wells of an Aggrewell 400 24well plate (34414, STEMCELL) with anti-adherence rinsing solution (07010, STEMCELL). iPSCs were seeded into the Aggrewell 400 24-well plate at a density of 1,000 cells per microwell in Aggrewell EB Formation Medium (05893, STEMCELL) with ROCK inhibitor Y-27632 and Penicillin/Streptomycin. After 24 hours, we replaced half of the spent media with fresh Aggrewell EB Formation Medium without ROCK inhibitor. 48 hours after seeding the Aggrewell plate, we harvested EBs and moved them to an ultra-low attachment 6-well plate (CLS3471-24EA, Sigma) in E6 media (A1516401, ThermoFisher Scientific) with Penicillin/Streptomycin. We maintained HDCs in culture for an additional 19 days, replacing media with fresh E6 media every 48 hours.
 
@@ -357,7 +357,7 @@ We differentiated two replicates of 51 iPSC lines across 17 batches consisting o
 
 In addition to these 51 iPSC lines which were differentiated and collected for this study, analyzed 3 batches previously collected in Rhodes et al. 2022, which included 2 additional lines, bringing the total number of cell lines in this study to 53.
 
-## Single-cell sequencing
+#### Single-cell sequencing
 
 We generated scRNA-seq libraries using the 10X Genomics 3' scRNA-seq v3.1 kit. Using the evenly pooled mix of lines from each collection batch, we loaded a 10x chip targeting 10,000 cells per lane of the 10x chip and loaded the same pool of cells across multiple lanes to recover 10,000 per individual. After cDNA amplification and cleanup, samples from each collection
 
@@ -383,11 +383,11 @@ We generated scRNA-seq libraries using the 10X Genomics 3' scRNA-seq v3.1 kit. U
 
 batch were stored at -20° C. Library preparation proceeded in larger batches composed of two or more collection batches (see Supplementary Table S1). For example, in library preparation batch 1, all samples from collection batches 1 and 3 were performed in parallel. cDNA libraries for biological replicates were always processed in different library preparation batches. Libraries were sequenced on the NovaSeq in the University of Chicago Functional Genomics Core. We pooled samples for sequencing in 7 batches. These batches are distinct from library preparation batch and are composed of two or more samples from the same collection batch. Some samples from a single collection day were split across different 'sequencing batches' (Supplementary Table S1). We targeted a final sequencing depth of 100,000 reads per cell.
 
-## Alignment, demultiplexing, and preliminary quality control
+#### Alignment, demultiplexing, and preliminary quality control
 
 We used Cellranger to align samples to the human genome (GRCh38) and to aggregate samples from all collections from this study as well as additional libraries collected previously that included 2 additional Yoruba individuals (NA19160, NA18511) and one individual represented in both collections (NA18858) 24,25,53 . We used Vireo to demultiplex samples and assign droplets to individuals. We used previously collected and imputed genotypes for the included Yoruba individuals from the HapMap and 1000 Genomes Project 54-56 . We then filtered cells to remove droplets that Vireo identified as doublets and droplets that could not be confidently assigned to an individual. For the samples collected prior to this study, we kept only droplets representing Yoruba individuals (these samples originally included chimpanzee cells and cells from non-YRI humans). We further filtered cells to keep only those with less than 15% mitochondrial reads and with at least 2500 genes expressed. We also removed cells with very high total counts, keeping only those with less than 150,000 total counts. Finally, we filtered to genes expressed in at least 10 cells. This left a total of 909,536 cells and 35,324 genes for downstream analysis.
 
-## Fetal cell atlas classifier
+#### Fetal cell atlas classifier
 
 The fetal cell atlas contains a total of 77 cell-type labels. To obtain marker gene sets for these 77 cell-types, we subsampled overabundant cell-types to a maximum of 5,000 cells per cell-type (regardless of the tissue of origin), and filtered genes to protein-coding genes. To assess classifier performance, we treated cell-type labels assigned by the original fetal cell atlas paper as ground truth. We split the uniformly sampled data into training and testing subsets with equal numbers of cells. We preprocessed the training data using scater 57 : we first normalized cells by size factors, then log transformed the data, and selected highly variable features at an FDR threshold of 0.1. We then performed multiple correspondence analysis (MCA) to extract signature gene sets for each cell-type using Cell-ID 58 . Annotation of the HDC data with these gene sets suggested that 64 of 77 cell-types were represented with at least 5 cells present from at least 25 donors. However, this classifier displayed poor accuracy on held-out test data (Fig. S1). Examination of the reference gene sets suggested that high similarity among related cell-types (e.g., neuronal subtypes) likely compromised the classifier's performance.
 
@@ -415,19 +415,19 @@ which are unlikely to arise in the in vitro HDC system, as well as rare cell-typ
 
 Our final set of cell-type signatures was obtained by applying the sampling, normalization, and embedding procedures described above to the merged training and test datasets. The gene set signatures used for this final classifier are available in Supplementary Table S2.
 
-## Cell-type annotation
+#### Cell-type annotation
 
 To classify HDC cells using these gene sets, we first normalized our HDC cells as described in the previous section, subsetting to the same set of highly variable genes used for the fetal cell atlas embedding. We applied MCA, and used Cell-ID to generate cell-type labels.
 
-## UMAP visualization
+#### UMAP visualization
 
 To generate the UMAP embedding, we first identified 5000 highly variable genes using proportional fitting 59 and scanpy's default method for extracting highly variable genes proposed in 60 . We subset to these 5,000 genes to generate a 50-dimensional embedding of the data using a variational autoencoder applied to raw UMI counts with scVI 61 . To generate a 2-dimensional embedding of the data we computed a neighborhood graph based on this encoding and applied UMAP using scanpy 's default settings 62 . This UMAP embedding was used purely for the convenience of visualizing the full dataset in two dimensions, and did not influence cell-type annotation, trajectory inference, topic modeling, or any QTL calling.
 
-## Hierarchical clustering of cell-types
+#### Hierarchical clustering of cell-types
 
 To group cell-types according to expression similarity, we aggregated all cells with the same cell-type label into a pseudobulk sample by taking the sum of all UMI counts. We then filtered to the intersection of protein-coding genes and the fetal cell atlas highly variable gene set (see Classifier Development section), and applied TMM and log CPM normalization using the edgeR package 63 . We applied hierarchical clustering to these normalized pseudobulk samples for each cell-type using Ward's method 64 .
 
-## eQTL calling in each cell-type
+#### eQTL calling in each cell-type
 
 To perform eQTL calling, we aggregated cells from the same donor and cell-type by taking the sum of all UMI counts per gene. We removed pseudobulk samples with fewer than 5 cells.
 
@@ -455,15 +455,15 @@ We tested all variants within 50kb of the corresponding gene's TSS, that had min
 
 To generate a list of all significant variant-gene pairs, we followed the procedure described by the GTEx Consortium 4 : a genome-wide P -value threshold was defined as the betaapproximated P -value of the gene closest to the global q-value cutoff of 0.05. This genome-wide threshold was used to define a nominal threshold for each gene based on the per-gene beta distribution estimated with TensorQTL, and all variants with a nominal P -value below this genelevel threshold were considered significant (Supplementary Table S5).
 
-## GTEx overlap
+#### GTEx overlap
 
 We used bedtools 67 to identify variant-gene pairs intersecting the full set of significant eQTL variant-gene pairs in each GTEx tissue, using data from GTEx v8.
 
-## Multivariate adaptive shrinkage (MASH) analysis
+#### Multivariate adaptive shrinkage (MASH) analysis
 
 To perform the mash analysis, we first estimated residual correlation structure (V) with mash's expectation maximization procedure, subsetting to a random subset of 25,000 genevariant pairs that were tested in all cell-types for efficiency 68 . Next, to estimate data-driven covariance matrices (U), we subset first to gene-variant pairs which were tested in all cell-types, then to the strongest (largest absolute z-score) effect per gene, and finally to the top 2,000 strongest effects across all genes. We decomposed this set of 2,000 eQTL effects across celltypes into non-negative latent factors through Empirical Bayes Matrix Factorization using flashier 69 as implemented in the mash package. We removed singleton components which only assigned weight to a single cell-type. We included the four rank-1 covariance matrices generated from these latent factors, as well as their normalized sum, to fit the mash model. We additionally included a singleton component for each cell-type as well as a component corresponding to shared effects across all cell-types. We fit the mash model on a random subset of 50,000 genevariant pairs that were tested in at least 10 contexts. After model fitting, we performed inference across all variant-gene pairs tested in at least 5 contexts.
 
-## Trajectory isolation
+#### Trajectory isolation
 
 For each trajectory, we curated marker gene lists from multiple published directed differentiation protocols defining marker genes for each stage of differentiation 17,70-106 . We used
 
@@ -487,23 +487,23 @@ For each trajectory, we curated marker gene lists from multiple published direct
 
 scDRS to test for enrichment of the marker gene set compared to 50 background gene sets matched for mean and variance of library-size normalized, log-transformed single-cell expression 36 , filtering to cells with FDR <= 0.1 for inclusion in the isolated trajectory. Marker gene sets are available in Supplementary Table S7-S9.
 
-## Pseudotime inference and marker gene visualization
+#### Pseudotime inference and marker gene visualization
 
 We applied principal component analysis to library-size, log normalized single-cell gene expression data from each trajectory in isolation, and used this first principal component as a measure of pseudotime. To visualize trends in marker gene expression with respect to pseudotime, we adopted a sliding window approach used by Cuomo et al (taking the average expression of 10% of cells in each window, sliding along pseudotime by 2.5% of cells) 15 , followed by min-max normalization for each gene.
 
-## Pseudobulk aggregation
+#### Pseudobulk aggregation
 
 To mitigate the noise of single-cell data and leverage efficient and established tools for interaction eQTL calling, we aggregated cells into pseudobulk samples. We grouped cells into 15 pseudotime bins of equal range. In each trajectory, cells from bins 1 and 2 were combined as were cells from bins 14 and 15 to account for fewer cells and donors being represented at the extremes of the pseudotime distribution. Each pseudobulk sample contains the sum of UMI counts from all cells from a single donor in a single pseudotime bin.
 
-## Pseudobulk sample, gene, and variant filtering for dynamic eQTL calling
+#### Pseudobulk sample, gene, and variant filtering for dynamic eQTL calling
 
 In each trajectory, we dropped pseudobulk samples that consisted of less than 5 cells, omitted any donors represented in 10 or fewer pseudotime bins, and filtered to genes with nonzero pseudobulk expression in at least 10 samples and non-zero variance in expression across samples. This resulted in a total of 428 pseudobulk samples from a total of 35 cell lines for the cardiomyocyte trajectory, 383 samples from 31 cell lines in the hepatocyte trajectory, and 549 samples from 44 cell lines in the neuronal trajectory. We normalized pseudobulk expression and filtered tests as described for the cell-type analysis.
 
-## Covariates for dynamic eQTL calling
+#### Covariates for dynamic eQTL calling
 
 As in previous work 17,21 , we used cell line PCA to infer latent covariates introducing broad differences in expression between cell lines over the course of a differentiation trajectory. We used the NIPALS algorithm 107 to perform cell line PCA with missing values, as not all donors contain 5 cells in each pseudotime bin. We included sex and the first 10 cell line PCs as covariates, as well as their interaction with pseudotime.
 
-## Dynamic eQTL calling
+#### Dynamic eQTL calling
 
 We use TensorQTL 66 to conduct dynamic eQTL calling, using the following model: 𝐸 𝑐𝑡 ~𝑁(𝜇 + 𝛽 1 𝐺 𝑐 +𝛽 2  +𝛽 3 𝑃𝐶 𝑐 1 +.. . +𝛽 12 𝑃𝐶 𝑐 10 +𝛽 13 𝑆 𝑐 +𝛽 14 𝑃𝐶 𝑐 1  +.. . +𝛽 23 𝑃𝐶 𝑐 10  +𝛽 24 𝑆 𝑐  +𝛽 25 𝐺 𝑐  , 𝜎)
 
@@ -533,23 +533,23 @@ Benjamini-Hochberg procedure to the smallest adjusted P -value per gene to contr
 
 We generated a list of all significant dynamic eQTLs analogously to the procedure described for cell-type eQTLs: a genome-wide adjusted P -value threshold was defined as the EigenMT-adjusted P -value of the gene closest to the global FDR threshold, and all variants with an adjusted P -value below this threshold were included in the final set of significant dynamic eQTLs (Supplementary Table S10).
 
-## Replication of cardiomyocyte dynamic eQTLs
+#### Replication of cardiomyocyte dynamic eQTLs
 
 To test for replication of these eQTLs in a separate dataset, we reprocessed the single-cell expression data collected in Elorbany et al as described above, and used the qvalue package to estimate the  1 replication rate for the strongest cardiomyocyte dynamic eQTL per gene detected in our study 33 .
 
-## Classification of dynamic eQTLs
+#### Classification of dynamic eQTLs
 
 We classified significant dynamic eQTLs as early, late, or switch categories as in previous work 17,21 . An eQTL is classified as early if the effect size decreased over time, late if it increased over time, and switch if the sign of the effect changed over time. We used the fitted linear model generated by TensorQTL to estimate predicted effect sizes at the endpoints of the trajectory's pseudotime range, and compare these predictions to classify each eQTL. If the effect size remains the same, the variant is classified as early if the magnitude decreases or late if the magnitude increases. If the effect size flips and the predicted effect at both ends has a magnitude exceeding a threshold of 1, it is called a switch effect.
 
-## Pseudocell aggregation for topic modeling
+#### Pseudocell aggregation for topic modeling
 
 To improve computational efficiency and once again mitigate the noise of single-cell data, we aggregated cells into pseudocells before applying topic modeling in an approach similar to that used by Strober et al 109 . To avoid over-representation from donors with outlier cell counts, for donors with cell counts over 1.5 standard deviations above the median we randomly subsampled without replacement to the median number (16,839) of cells. We also removed cells collected in a previous study due to differences in cell depth that disrupted topic modeling, leaving 51 of 53 donors. For each combination of donor and collection batch, we generated a separate neighborhood graph based on the scVI embedding space (see UMAP visualization ) and applied Leiden clustering, as implemented in the scanpy package, at resolution 15. We summed raw UMI counts for all cells within a cluster to generate pseudocell expression. This left 17,913 pseudocells after aggregation, with a median of 37 cells per pseudocells and a median of 342 pseudocells per donor.
 
-## Topic modeling
+#### Topic modeling
 
 To fit the topic model, we first filtered out genes expressed in less than 10 pseudocells. We then applied Poisson negative matrix factorization to the filtered pseudocell expression data: we used k=10 topics, and fit the model first using 400 expectation maximization (EM) updates followed by 200 stochastic coordinate descent (SCD) updates 42 . We then use the parameter estimates from this Poisson non-negative matrix factorization to recover parameter estimates for the multinomial topic model using FastTopics 's poisson2multinom command.
 
-## Topic interpretation
+#### Topic interpretation
 
 5
 
@@ -573,15 +573,15 @@ To fit the topic model, we first filtered out genes expressed in less than 10 ps
 
 We conducted grade of membership differential expression (DE) analysis using FastTopics 's de\_analysis function. Genes with posterior log fold change values over 2 were considered for gene set enrichment using the Gene Ontology 110 . We performed a hypergeometric test for topic driver gene enrichment in all GO biological processes, and used the BenjaminiHochberg procedure to control the false discovery rate at a level of 0.01. We focused on overrepresentation of topic DE genes in a gene set for the purposes of interpretation (OR >= 1, Supplementary Table S11). Topics 3 and 9 displayed no enrichment for any GO biological processes nor clear enrichment in any of the previously characterized cell-types, leading us to omit these two topics from downstream QTL calling analysis to instead focus on the 8 more clearly interpretable latent topics.
 
-## Topic eQTL calling
+#### Topic eQTL calling
 
 CellRegMap takes as inputs a kinship matrix to account for genetic similarity between cells, an environmental covariance matrix to account for similarity due to cellular context, and covariates. We used Plink 111 to construct the kinship matrix from all 53 donors. To construct the environmental covariance matrix, we applied an inverse normal transformation to each column (topic) of the topic loadings matrix (C, pseudocells x topics), then did the same transformation for each row (pseudocell), before generating the environmental covariance matrix (CC T ). We included sex and collection date as covariates. After QTL calling, we applied Bonferroni correction and generated a list of significant topic eQTLs as in both previous QTL analyses: a genome-wide adjusted P -value threshold was defined as the Bonferroni-adjusted P -value of the gene closest to a global q-value threshold of 0.1, and all variants with an adjusted P -value below this threshold were included in the final list (Supplementary Table S12).
 
-## Schizophrenia GWAS overlap
+#### Schizophrenia GWAS overlap
 
 To identify schizophrenia risk variants with novel regulatory interactions identified in HDCs, we filtered the aggregate list of significant variant-gene pairs from all cell-types to eQTLs that did not overlap an eQTL in any tissue according to the GTEx v8 Catalog. We then intersected these variants with genome-wide associated risk variants (P <= 5e-8) from Pardinas et al 112 . For this set of genome-wide significant HDC eQTLs without GTEx overlap, we compiled a list of all variants within 1Mb of the SNP that was in LD at R2 >= 0.5 (using the 53donor cohort in this study to compute LD). We then additionally checked these tag variants for overlap with any GTEx eQTLs in any tissue, and removed any such GTEx-overlapping tag variants to obtain our final set of schizophrenia-associated HDC eQTLs with no GTEx overlap.
 
-## Phenome-wide effects of interaction eQTLs
+#### Phenome-wide effects of interaction eQTLs
 
 To identify phenotypic effects of interaction eQTLs, we used an approach similar to that described for schizophrenia overlap. Instead of cell-type eQTLs, we used the aggregate set of significant variant-gene pairs from all three trajectory dynamic eQTL analyses, as well as the significant variant-gene pairs from the CellRegMap analysis. We subset to interaction eQTLs that did not overlap a GTEx eQTL in any tissue, and queried the OpenTargets database for any GWAS studies in which these interaction eQTLs displayed genome-wide significant effects. We similarly removed any tagged variants with known regulatory effects in the GTEx Catalog to obtain a final set of GWAS-overlapping HDC eQTLs with no GTEx overlap.
 
@@ -599,7 +599,7 @@ To identify phenotypic effects of interaction eQTLs, we used an approach similar
 
 35
 
-## References
+### References
 
 - 1. Visscher, P.M., Wray, N.R., Zhang, Q., Sklar, P., McCarthy, M.I., Brown, M.A., and Yang, J. (2017). 10 Years of GWAS Discovery: Biology, Function, and Translation. Am. J. Hum. Genet. 101 , 5-22.
 - 2. Lappalainen, T., Sammeth, M., Friedländer, M.R., 't Hoen, P.A.C., Monlong, J., Rivas, M.A., Gonzàlez-Porta, M., Kurbatova, N., Griebel, T., Ferreira, P.G., et al. (2013). Transcriptome and genome sequencing uncovers functional variation in humans. Nature 501 , 506-511.

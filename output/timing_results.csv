@@ -1,9 +1,1 @@
-PDF File,Platform,Model,Time (s),Word Count,Status
-Sociology_26.pdf,OpenAI,gpt-4o,47.68,0,"Error: Error code: 429 - {'error': {'message': 'Request too large for gpt-4o in organization org-SqHMCwGkhM7jZrMNPCai6boO on tokens per min (TPM): Limit 30000, Requested 30713. The input or output tokens must be reduced in order to run successfully. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}"
-Linguistics_42.pdf,OpenAI,gpt-4o,40.53,15967,Success
-Psychology_20.pdf,OpenAI,gpt-4o,28.39,0,"Error: Error code: 429 - {'error': {'message': 'Request too large for gpt-4o in organization org-SqHMCwGkhM7jZrMNPCai6boO on tokens per min (TPM): Limit 30000, Requested 51446. The input or output tokens must be reduced in order to run successfully. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}"
-Political_18.pdf,OpenAI,gpt-4o,16.19,10374,Success
-Political_18.pdf,Ollama,llama33-16k:latest,210.47,0,"Error: Error code: 500 - {'error': {'message': 'POST predict: Post ""http://127.0.0.1:33051/completion"": EOF', 'type': 'api_error', 'param': None, 'code': None}}"
-Physics_7.pdf,OpenAI,gpt-4o,13.4,5806,Success
-Physics_7.pdf,DeepSeek,deepseek-chat,18.44,5806,Success
-Physics_7.pdf,Ollama,llama33-16k:latest,56.42,5806,Success
+
